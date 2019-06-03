@@ -127,15 +127,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HouseholdController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\APIModelError.cs" />
     <Compile Include="Models\AuthenticationError.cs" />
     <Compile Include="Models\ChangePasswordBindingModel.cs" />
+    <Compile Include="Models\CreateHouseholdBindingModel.cs" />
     <Compile Include="Models\ForgotPasswordBindingModel.cs" />
+    <Compile Include="Models\HouseholdViewModel.cs" />
+    <Compile Include="Models\InviteUser.cs" />
     <Compile Include="Models\LoginBindingModel.cs" />
     <Compile Include="Models\LoginData.cs" />
+    <Compile Include="Models\MemberViewModel.cs" />
     <Compile Include="Models\RegisterNewUserBindingModel.cs" />
     <Compile Include="Models\ResetPasswordBindingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -179,6 +184,12 @@
     <Content Include="Views\Home\ChangePassword.cshtml" />
     <Content Include="Views\Home\ForgotPassword.cshtml" />
     <Content Include="Views\Home\ResetPassword.cshtml" />
+    <Content Include="Views\Household\CreateHousehold.cshtml" />
+    <Content Include="Views\Household\EditHousehold.cshtml" />
+    <Content Include="Views\Household\ViewHouseholdMemebers.cshtml" />
+    <Content Include="Views\Household\InviteUserToHousehold.cshtml" />
+    <Content Include="Views\Household\ViewMyCreatedHouseholds.cshtml" />
+    <Content Include="Views\Household\ViewHouseholdsJoined.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

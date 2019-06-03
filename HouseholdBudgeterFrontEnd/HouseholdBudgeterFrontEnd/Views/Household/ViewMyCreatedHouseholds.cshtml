@@ -1,0 +1,63 @@
+﻿@model List<HouseholdViewModel>
+@{
+    ViewBag.Title = "ViewMyCreatedHouseholds";
+}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>My Created Households</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    <table class="table table-striped table-fit" id="dataTable" cellspacing="-10">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Date Created</th>
+                                <th scope="col">Date Updated</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var house in Model)
+                            {
+                            <tr>
+                                <td>@house.Name</td>
+                                <td>@house.DateCreated</td>
+                                <td>@house.DateUpdated</td>
+                                <td><a href="@Url.Action("EditHousehold", "Household", new { id = house.Id })">Edit</a></td>
+                                <td><a href="@Url.Action("InviteUserToHousehold", "Household", new {id = house.Id})">Invite Members</a></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
