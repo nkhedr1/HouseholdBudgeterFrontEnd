@@ -14,5 +14,7 @@ namespace HouseholdBudgeterFrontEnd.Models
         [JsonProperty("error_description")]
         public string ErrorDescription { get; set; }
 
+      
+
     }
 }

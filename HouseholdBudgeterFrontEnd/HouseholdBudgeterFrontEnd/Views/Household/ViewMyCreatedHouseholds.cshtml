@@ -36,18 +36,21 @@
                         <tbody>
                             @foreach (var house in Model)
                             {
-                            <tr>
-                                <td>@house.Name</td>
-                                <td>@house.DateCreated</td>
-                                <td>@house.DateUpdated</td>
-                                <td><a href="@Url.Action("EditHousehold", "Household", new { id = house.Id })">Edit</a></td>
-                                <td><a href="@Url.Action("InviteUserToHousehold", "Household", new {id = house.Id})">Invite Members</a></td>
-                            </tr>
+                                <tr>
+                                    <td>@house.Name</td>
+                                    <td>@house.DateCreated</td>
+                                    <td>@house.DateUpdated</td>
+                                    <td><a href="@Url.Action("EditHousehold", "Household", new { id = house.Id })">Edit</a></td>
+                                    <td><a href="@Url.Action("InviteUserToHousehold", "Household", new {id = house.Id})">Invite Members</a></td>
+                                    <td><a href="@Url.Action("DeleteHousehold", "Household", new {id = house.Id})">Delete</a></td>
+                                </tr>
                             }
                         </tbody>
                     </table>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>

@@ -410,7 +410,7 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
             if (cookie == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
 
             var token = cookie.Value;
@@ -458,7 +458,7 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
             if (cookie == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
 
             var token = cookie.Value;
@@ -508,7 +508,7 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
             if (cookie == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
 
             var token = cookie.Value;
@@ -537,5 +537,71 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
             throw new Exception("Status not recongnized");
         }
+
+        [HttpGet]
+        public ActionResult DeleteHousehold(int id)
+        {
+
+            var url = $"http://localhost:55669/api/Household/DeleteHousehold/{id}";
+
+
+            var httpClient = new HttpClient();
+
+            var cookie = Request.Cookies["MyCookie"];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var token = cookie.Value;
+
+            httpClient.DefaultRequestHeaders.Add("Authorization",
+                $"Bearer {token}");
+
+            var response = httpClient.GetAsync(url).Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return RedirectToAction("ViewMyCreatedHouseholds", "Household");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var data = response.Content.ReadAsStringAsync().Result;
+                var result = JsonConvert.DeserializeObject<AuthenticationError>(data);
+                return RedirectToAction("ViewMyCreatedHouseholds", "Household");
+            }
+
+            else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
+
+
+            throw new Exception("Status not recongnized");
+        }
+
+        //public ActionResult TokenAuthentication(string url, string view)
+        //{
+        //    var cookie = Request.Cookies["MyCookie"];
+
+        //    if (cookie == null)
+        //    {
+        //        return RedirectToAction("Login", "Home");
+        //    }
+
+        //    var token = cookie.Value;
+
+        //    var requestUrl = url;
+
+        //    var httpClient = new HttpClient();
+
+        //    httpClient.DefaultRequestHeaders.Add("Authorization",
+        //        $"Bearer {token}");
+
+        //    var data = httpClient.GetStringAsync(requestUrl).Result;
+        //    return View("view");
+        //}
     }
 }
