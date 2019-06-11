@@ -1,7 +1,8 @@
-﻿@model List<HouseholdViewModel>
+﻿@model List<CategoryViewModel>
 @{
-    ViewBag.Title = "ViewHouseholdsJoined";
+    ViewBag.Title = "ViewAllHouseholdCategories";
 }
+
 
 <!-- Page Header -->
 <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
@@ -10,7 +11,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>My Joined Households</h1>
+                    <h1>Household Categories</h1>
                 </div>
             </div>
         </div>
@@ -27,34 +28,43 @@
                         <thead>
                             <tr>
                                 <th scope="col">Name</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Date Created</th>
                                 <th scope="col">Date Updated</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var house in Model)
+                            @if (Model != null)
                             {
-                            <tr>
-                                <td>@house.Name</td>
-                                <td>@house.DateCreated</td>
-                                <td>@house.DateUpdated</td>
-                                <td><a href="@Url.Action("EditHousehold", "Household", new { id = house.Id })">Edit</a></td>
-                                <td><a href="@Url.Action("LeaveHousehold", "Household", new {id = house.Id})">Leave Household</a></td>
-                                <td><a href="@Url.Action("CreateCategory", "Category", new {id = house.Id})">Create Category</a></td>
-                                <td><a href="@Url.Action("ViewAllHouseholdCategories", "Category", new {id = house.Id})">View Categories</a></td>
-                            </tr>
+                                foreach (var cat in Model)
+                                {
+                                    <tr>
+                                        <td>@cat.Name</td>
+                                        <td>@cat.Description</td>
+                                        <td>@cat.DateCreated</td>
+                                        <td>@cat.DateUpdated</td>
+                                        <td><a href="@Url.Action("EditCategory", "Category", new { id = cat.Id, householdId = cat.HouseholdId })">Edit</a></td>
+                                    </tr>
+                                }
                             }
+
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            @if (TempData.ContainsKey("viewCategoryError"))
+            {
+                <div>
+                    @TempData["viewCategoryError"].ToString();
+                </div>
+            }
         </div>
     </div>
 </div>
+
+
 
 
 

@@ -134,7 +134,9 @@
     </Compile>
     <Compile Include="Models\APIModelError.cs" />
     <Compile Include="Models\AuthenticationError.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ChangePasswordBindingModel.cs" />
+    <Compile Include="Models\CreateCategoryBindingModel.cs" />
     <Compile Include="Models\CreateHouseholdBindingModel.cs" />
     <Compile Include="Models\ForgotPasswordBindingModel.cs" />
     <Compile Include="Models\HouseholdViewModel.cs" />
@@ -192,10 +194,12 @@
     <Content Include="Views\Household\InviteUserToHousehold.cshtml" />
     <Content Include="Views\Household\ViewMyCreatedHouseholds.cshtml" />
     <Content Include="Views\Household\ViewHouseholdsJoined.cshtml" />
+    <Content Include="Views\Category\CreateCategory.cshtml" />
+    <Content Include="Views\Category\EditCategory.cshtml" />
+    <Content Include="Views\Category\ViewAllHouseholdCategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

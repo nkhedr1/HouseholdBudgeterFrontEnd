@@ -69,7 +69,7 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
                 var data = response.Content.ReadAsStringAsync().Result;
 
-                var result = JsonConvert.DeserializeObject<ResetPasswordBindingModel>(data);
+                var result = JsonConvert.DeserializeObject<CreateHouseholdBindingModel>(data);
 
                 return RedirectToAction("ViewMyCreatedHouseholds", "Household");
             }
@@ -101,7 +101,7 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
             if (cookie == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
 
             var token = cookie.Value;
@@ -162,7 +162,7 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
             if (cookie == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
 
             var token = cookie.Value;
@@ -208,7 +208,7 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
             if (cookie == null)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
 
             var token = cookie.Value;
