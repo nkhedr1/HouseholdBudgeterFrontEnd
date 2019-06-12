@@ -1,6 +1,6 @@
-﻿@model CategoryViewModel
+﻿@model BankAccountBindingModel
 @{
-    ViewBag.Title = "EditCategory";
+    ViewBag.Title = "CreateBankAccount";
 }
 
 
@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Edit Category</h1>
+                    <h1>Create Bank Account</h1>
                 </div>
             </div>
         </div>
@@ -22,10 +22,10 @@
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
 
-            @using (Html.BeginForm("EditCategory", "Category", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("CreateBankAccount", "BankAccount", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Enter Category Details</h4>
+                <h4>Enter Bank Account Details</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -42,7 +42,7 @@
                         @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                @Html.HiddenFor(model => model.HouseholdId)
+
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-3">
                         <input type="submit" value="Submit" class="btn btn-primary btn-block" />
@@ -51,12 +51,9 @@
 
             }
 
-
         </div>
     </div>
 </div>
-
-
 
 
 

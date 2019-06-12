@@ -1,7 +1,8 @@
-﻿@model List<CategoryViewModel>
+﻿@model List<BankAccountViewModel>
 @{
-    ViewBag.Title = "ViewAllHouseholdCategories";
+    ViewBag.Title = "ViewAllHouseholdAccounts";
 }
+
 
 
 <!-- Page Header -->
@@ -11,7 +12,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Household Categories</h1>
+                    <h1>Household Bank Accounts</h1>
                 </div>
             </div>
         </div>
@@ -36,22 +37,25 @@
                                 <th scope="col">Description</th>
                                 <th scope="col">Date Created</th>
                                 <th scope="col">Date Updated</th>
+                                <th scope="col">Balance</th>
+                                <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (Model != null)
                             {
-                                foreach (var cat in Model)
+                                foreach (var acc in Model)
                                 {
-                                    <tr>
-                                        <td>@cat.Name</td>
-                                        <td>@cat.Description</td>
-                                        <td>@cat.DateCreated</td>
-                                        <td>@cat.DateUpdated</td>
-                                        <td><a href="@Url.Action("EditCategory", "Category", new { id = cat.Id, householdId = cat.HouseholdId })">Edit</a></td>
-                                        <td><a href="@Url.Action("DeleteCategory", "Category", new {id = cat.Id, householdId = cat.HouseholdId})">Delete</a></td>
-                                    </tr>
+                            <tr>
+                                <td>@acc.Name</td>
+                                <td>@acc.Description</td>
+                                <td>@acc.DateCreated</td>
+                                <td>@acc.DateUpdated</td>
+                                <td>@acc.Balance</td>
+                                <td><a href="@Url.Action("EditBankAccount", "BankAccount", new { id = acc.Id, householdId = acc.HouseholdId })">Edit</a></td>
+                                <td><a href="@Url.Action("DeleteBankAccount", "BankAccount", new {id = acc.Id, householdId = acc.HouseholdId})">Delete</a></td>
+                            </tr>
                                 }
                             }
 
@@ -64,5 +68,7 @@
         </div>
     </div>
 
-  
+
 </div>
+
+

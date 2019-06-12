@@ -46,6 +46,7 @@
                                 <td><a href="@Url.Action("LeaveHousehold", "Household", new {id = house.Id})">Leave Household</a></td>
                                 <td><a href="@Url.Action("CreateCategory", "Category", new {id = house.Id})">Create Category</a></td>
                                 <td><a href="@Url.Action("ViewAllHouseholdCategories", "Category", new {id = house.Id})">View Categories</a></td>
+                                <td><a href="@Url.Action("ViewAllHouseholdAccounts", "BankAccount", new {id = house.Id})">View Accounts</a></td>
                             </tr>
                             }
                         </tbody>
@@ -53,6 +54,13 @@
                 </div>
             </div>
         </div>
+
+        @if (TempData.ContainsKey("notOwnerError"))
+        {
+            <div>
+                @TempData["notOwnerError"].ToString();
+            </div>
+        }
     </div>
 </div>
 

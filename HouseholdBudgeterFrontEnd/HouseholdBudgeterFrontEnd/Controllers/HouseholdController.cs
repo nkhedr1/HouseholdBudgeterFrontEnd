@@ -563,6 +563,7 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
+                TempData["userMessage"] = "Household deleted";
                 return RedirectToAction("ViewMyCreatedHouseholds", "Household");
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)

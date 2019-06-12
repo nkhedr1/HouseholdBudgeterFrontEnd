@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BankAccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HouseholdController.cs" />
@@ -134,6 +135,8 @@
     </Compile>
     <Compile Include="Models\APIModelError.cs" />
     <Compile Include="Models\AuthenticationError.cs" />
+    <Compile Include="Models\BankAccountBindingModel.cs" />
+    <Compile Include="Models\BankAccountViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ChangePasswordBindingModel.cs" />
     <Compile Include="Models\CreateCategoryBindingModel.cs" />
@@ -197,6 +200,9 @@
     <Content Include="Views\Category\CreateCategory.cshtml" />
     <Content Include="Views\Category\EditCategory.cshtml" />
     <Content Include="Views\Category\ViewAllHouseholdCategories.cshtml" />
+    <Content Include="Views\BankAccount\CreateBankAccount.cshtml" />
+    <Content Include="Views\BankAccount\ViewAllHouseholdAccounts.cshtml" />
+    <Content Include="Views\BankAccount\EditBankAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
