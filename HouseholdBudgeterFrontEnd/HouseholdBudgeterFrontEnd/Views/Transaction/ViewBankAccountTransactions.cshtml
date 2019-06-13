@@ -1,8 +1,7 @@
-﻿@model List<BankAccountViewModel>
+﻿@model List<TransactionViewModel>
 @{
-    ViewBag.Title = "ViewAllHouseholdAccounts";
+    ViewBag.Title = "ViewBankAccountTransactions";
 }
-
 
 
 <!-- Page Header -->
@@ -12,7 +11,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h1>Household Bank Accounts</h1>
+                    <h1>Bank Account Transactions</h1>
                 </div>
             </div>
         </div>
@@ -33,15 +32,12 @@
                     <table class="table table-striped table-fit" id="dataTable" cellspacing="-10">
                         <thead>
                             <tr>
-                                <th scope="col">Name</th>
+                                <th scope="col">Title</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Date Created</th>
                                 <th scope="col">Date Updated</th>
-                                <th scope="col">Balance</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
+                                <th scope="col">Transaction Date</th>
+                                <th scope="col">Amount</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
@@ -49,19 +45,17 @@
                         <tbody>
                             @if (Model != null)
                             {
-                                foreach (var acc in Model)
+                                foreach (var trans in Model)
                                 {
                             <tr>
-                                <td>@acc.Name</td>
-                                <td>@acc.Description</td>
-                                <td>@acc.DateCreated</td>
-                                <td>@acc.DateUpdated</td>
-                                <td>@acc.Balance</td>
-                                <td><a href="@Url.Action("EditBankAccount", "BankAccount", new { id = acc.Id, householdId = acc.HouseholdId })">Edit</a></td>
-                                <td><a href="@Url.Action("DeleteBankAccount", "BankAccount", new {id = acc.Id, householdId = acc.HouseholdId})">Delete</a></td>
-                                <td><a href="@Url.Action("ManuallyUpdateBankAccountBalance", "BankAccount", new {id = acc.Id, householdId = acc.HouseholdId})">Update Balance</a></td>
-                                <td><a href="@Url.Action("CreateTransaction", "Transaction", new {id = acc.Id, householdId = acc.HouseholdId})">Create Transactions</a></td>
-                                <td><a href="@Url.Action("ViewBankAccountTransactions", "Transaction", new {id = acc.Id})">View Transactions</a></td>
+                                <td>@trans.Title</td>
+                                <td>@trans.Description</td>
+                                <td>@trans.DateCreated</td>
+                                <td>@trans.DateUpdated</td>
+                                <td>@trans.Date</td>
+                                <td>@trans.Amount</td>
+                                <td><a href="@Url.Action("EditTransaction", "Transaction", new { id = trans.Id, householdId = trans.HouseholdId })">Edit</a></td>
+
                             </tr>
                                 }
                             }
@@ -77,5 +71,7 @@
 
 
 </div>
+
+
 
 

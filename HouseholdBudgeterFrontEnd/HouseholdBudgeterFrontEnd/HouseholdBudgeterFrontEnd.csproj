@@ -130,6 +130,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HouseholdController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -141,6 +142,7 @@
     <Compile Include="Models\ChangePasswordBindingModel.cs" />
     <Compile Include="Models\CreateCategoryBindingModel.cs" />
     <Compile Include="Models\CreateHouseholdBindingModel.cs" />
+    <Compile Include="Models\CreateTransactionViewModel.cs" />
     <Compile Include="Models\ForgotPasswordBindingModel.cs" />
     <Compile Include="Models\HouseholdViewModel.cs" />
     <Compile Include="Models\InviteUser.cs" />
@@ -150,6 +152,8 @@
     <Compile Include="Models\MessageError.cs" />
     <Compile Include="Models\RegisterNewUserBindingModel.cs" />
     <Compile Include="Models\ResetPasswordBindingModel.cs" />
+    <Compile Include="Models\TransactionBindingModel.cs" />
+    <Compile Include="Models\TransactionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +207,9 @@
     <Content Include="Views\BankAccount\CreateBankAccount.cshtml" />
     <Content Include="Views\BankAccount\ViewAllHouseholdAccounts.cshtml" />
     <Content Include="Views\BankAccount\EditBankAccount.cshtml" />
+    <Content Include="Views\Transaction\CreateTransaction.cshtml" />
+    <Content Include="Views\Transaction\ViewBankAccountTransactions.cshtml" />
+    <Content Include="Views\Transaction\EditTransaction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

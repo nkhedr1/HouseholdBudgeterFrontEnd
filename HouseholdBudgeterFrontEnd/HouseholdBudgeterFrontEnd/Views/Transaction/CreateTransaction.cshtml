@@ -1,0 +1,89 @@
+﻿@model CreateTransactionViewModel
+
+@{
+    ViewBag.Title = "CreateTransaction";
+}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Create Transaction</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+            @using (Html.BeginForm("CreateTransaction", "Transaction", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+            <h4>Enter Transaction Details</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Title, new { @class = "col-md-5 control-label" })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description, new { @class = "col-md-5 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Amount, new { @class = "col-md-5 control-label" })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Amount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Date, new { @class = "col-md-5 control-label" })
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", @type = "date" })
+                        @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Category</label>
+                    <select name="Category" class="form-control">
+                        @foreach (var cat in Model.Categories)
+                        {
+                            <option value="@cat.Id">@cat.Name</option>
+                        }
+                    </select>
+                </div>
+                @Html.HiddenFor(model => model.HouseholdId)
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-3">
+                        <input type="submit" value="Submit" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

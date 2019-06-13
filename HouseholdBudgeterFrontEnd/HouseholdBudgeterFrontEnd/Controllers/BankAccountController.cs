@@ -188,7 +188,7 @@ namespace HouseholdBudgeterFrontEnd.Controllers
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                TempData["userMessage"] = "You are not the owner of this household or this household does not exist";
+                TempData["userMessage"] = "You are not the owner of this household or this household or Bank Account does not exist";
 
                 return RedirectToAction("ViewMyCreatedHouseholds", "Household");
             }
@@ -254,7 +254,7 @@ namespace HouseholdBudgeterFrontEnd.Controllers
             }
             else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                TempData["userMessage"] = "You are not the owner of this household or this household does not exist";
+                TempData["userMessage"] = "You are not the owner of this household or this household or Bank Accountdoes not exist";
 
                 return RedirectToAction("ViewMyCreatedHouseholds", "Household");
             }
@@ -310,6 +310,111 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
             }
 
+
+            throw new Exception("Status not recongnized");
+        }
+
+        [HttpGet]
+        public ActionResult ManuallyUpdateBankAccountBalance(int id, int householdId)
+        {
+            var url = $"http://localhost:55669/api/BankAccount/ManuallyUpdateBankAccountBalance/{householdId}/{id}";
+
+            var httpClient = new HttpClient();
+
+            var cookie = Request.Cookies["MyCookie"];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var token = cookie.Value;
+
+            httpClient.DefaultRequestHeaders.Add("Authorization",
+                $"Bearer {token}");
+
+            var response = httpClient.GetAsync(url).Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return RedirectToAction("ViewAllHouseholdAccounts", "BankAccount", new { id = householdId });
+            }
+
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                TempData["userMessage"] = "You are not the owner of this household";
+                return RedirectToAction("ViewMyCreatedHouseholds", "Household");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                TempData["userMessage"] = "This household or Bank Account does not exist";
+
+                return RedirectToAction("ViewAllHouseholdAccounts", "BankAccount", new { id = householdId });
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+            {
+                return View("Error");
+            }
+
+            throw new Exception("Status not recongnized");
+        }
+
+        [HttpPost]
+        public ActionResult ManuallyUpdateBankAccountBalance(int id, int householdId, BankAccountViewModel model)
+        {
+
+            var url = $"http://localhost:55669/api/BankAccount/ManuallyUpdateBankAccountBalance/{householdId}/{id}";
+
+            var balance = model.Balance.ToString();
+
+            var httpClient = new HttpClient();
+
+            var parameters = new List<KeyValuePair<string, string>>();
+
+            parameters
+               .Add(new KeyValuePair<string, string>("balance", balance));
+
+            var encodedValues = new FormUrlEncodedContent(parameters);
+
+            var cookie = Request.Cookies["MyCookie"];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var token = cookie.Value;
+
+            httpClient.DefaultRequestHeaders.Add("Authorization",
+                $"Bearer {token}");
+
+            var response = httpClient.PostAsync(url, encodedValues).Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+
+                var data = httpClient.GetStringAsync(url).Result;
+
+                var result = JsonConvert.DeserializeObject<BankAccountViewModel>(data);
+
+                return RedirectToAction("ViewAllHouseholdAccounts", "BankAccount", new { id = householdId });
+            }
+
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                TempData["userMessage"] = "You are not the owner of this household";
+                return RedirectToAction("ViewMyCreatedHouseholds", "Household");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                TempData["userMessage"] = "This household or Bank Account does not exist";
+
+                return RedirectToAction("ViewAllHouseholdAccounts", "BankAccount", new { id = householdId });
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+            {
+                return View("Error");
+            }
 
             throw new Exception("Status not recongnized");
         }
