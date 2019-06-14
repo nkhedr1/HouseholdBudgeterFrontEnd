@@ -318,5 +318,88 @@ namespace HouseholdBudgeterFrontEnd.Controllers
 
             throw new Exception("Status not recongnized");
         }
+
+        [HttpGet]
+        public ActionResult DeleteTransaction(int id)
+        {
+
+            var url = $"http://localhost:55669/api/Transaction/DeleteTransaction/{id}";
+
+            var httpClient = new HttpClient();
+
+            var cookie = Request.Cookies["MyCookie"];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var token = cookie.Value;
+
+            httpClient.DefaultRequestHeaders.Add("Authorization",
+                $"Bearer {token}");
+
+            var response = httpClient.GetAsync(url).Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                TempData["userMessage"] = "Transaction deleted";
+                return RedirectToAction("ViewMyCreatedHouseholds", "Household");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                TempData["userMessage"] = "You are not the owner of this household";
+                return RedirectToAction("ViewMyCreatedHouseholds", "Household");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                TempData["userMessage"] = "Household or category does not exist";
+                return RedirectToAction("ViewMyCreatedHouseholds", "Household");
+            }
+
+            else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+            {
+                return View("Error");
+            }
+
+            throw new Exception("Status not recongnized");
+        }
+
+
+        [HttpGet]
+        public ActionResult VoidTransaction(int id)
+        {
+
+            var url = $"http://localhost:55669/api/Transaction/VoidTransaction/{id}";
+
+            var httpClient = new HttpClient();
+
+            var cookie = Request.Cookies["MyCookie"];
+
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var token = cookie.Value;
+
+            httpClient.DefaultRequestHeaders.Add("Authorization",
+                $"Bearer {token}");
+
+            var response = httpClient.GetAsync(url).Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+             
+                return RedirectToAction("ViewMyCreatedHouseholds", "Household");
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                
+                return RedirectToAction("ViewMyCreatedHouseholds", "Household");
+            }
+                    
+            throw new Exception("Status not recongnized");
+        }
     }
 }

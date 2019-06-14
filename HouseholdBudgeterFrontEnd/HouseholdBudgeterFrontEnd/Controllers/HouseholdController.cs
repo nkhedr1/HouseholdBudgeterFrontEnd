@@ -583,26 +583,52 @@ namespace HouseholdBudgeterFrontEnd.Controllers
             throw new Exception("Status not recongnized");
         }
 
-        //public ActionResult TokenAuthentication(string url, string view)
-        //{
-        //    var cookie = Request.Cookies["MyCookie"];
+        [HttpGet]
+        public ActionResult ViewHouseholdDetails(int id)
+        {
+            var url = $"http://localhost:55669/api/Household/ViewHouseholdDetails/{id}";
 
-        //    if (cookie == null)
-        //    {
-        //        return RedirectToAction("Login", "Home");
-        //    }
+            var httpClient = new HttpClient();
 
-        //    var token = cookie.Value;
+            var cookie = Request.Cookies["MyCookie"];
 
-        //    var requestUrl = url;
+            if (cookie == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
 
-        //    var httpClient = new HttpClient();
+            var token = cookie.Value;
 
-        //    httpClient.DefaultRequestHeaders.Add("Authorization",
-        //        $"Bearer {token}");
+            httpClient.DefaultRequestHeaders.Add("Authorization",
+                $"Bearer {token}");
 
-        //    var data = httpClient.GetStringAsync(requestUrl).Result;
-        //    return View("view");
-        //}
+            var response = httpClient.GetAsync(url).Result;
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+
+                var data = httpClient.GetStringAsync(url).Result;
+
+                var result = JsonConvert.DeserializeObject<HouseholdDetailViewModel>(data);
+
+                return View(result);
+            }
+
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var data = response.Content.ReadAsStringAsync().Result;
+                var result = JsonConvert.DeserializeObject<AuthenticationError>(data);
+
+                return View();
+            }
+
+            else if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
+            {
+                return View("Error");
+            }
+
+            throw new Exception("Status not recongnized");
+
+        }
     }
 }

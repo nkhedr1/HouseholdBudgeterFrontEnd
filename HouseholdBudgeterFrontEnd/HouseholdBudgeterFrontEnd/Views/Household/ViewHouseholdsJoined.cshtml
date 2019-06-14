@@ -33,6 +33,7 @@
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +48,7 @@
                                 <td><a href="@Url.Action("CreateCategory", "Category", new {id = house.Id})">Create Category</a></td>
                                 <td><a href="@Url.Action("ViewAllHouseholdCategories", "Category", new {id = house.Id})">View Categories</a></td>
                                 <td><a href="@Url.Action("ViewAllHouseholdAccounts", "BankAccount", new {id = house.Id})">View Accounts</a></td>
+                                <td><a href="@Url.Action("ViewHouseholdDetails", "Household", new {id = house.Id})">Details</a></td>
                             </tr>
                             }
                         </tbody>

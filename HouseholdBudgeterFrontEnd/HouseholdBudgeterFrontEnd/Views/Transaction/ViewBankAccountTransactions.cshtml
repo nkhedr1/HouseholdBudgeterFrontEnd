@@ -38,6 +38,8 @@
                                 <th scope="col">Date Updated</th>
                                 <th scope="col">Transaction Date</th>
                                 <th scope="col">Amount</th>
+                                <th scope="col">Transaction Voided</th>
+                                <th scope="col"></th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
@@ -54,8 +56,14 @@
                                 <td>@trans.DateUpdated</td>
                                 <td>@trans.Date</td>
                                 <td>@trans.Amount</td>
+                                <td>@trans.VoidTransaction</td>
                                 <td><a href="@Url.Action("EditTransaction", "Transaction", new { id = trans.Id, householdId = trans.HouseholdId })">Edit</a></td>
-
+                                <td><a href="@Url.Action("DeleteTransaction", "Transaction", new { id = trans.Id })">Delete</a></td>
+                                @if (trans.VoidTransaction == false)
+                                {
+                                <td><a href="@Url.Action("VoidTransaction", "Transaction", new { id = trans.Id })">Void Transaction</a></td>
+                                }
+                          
                             </tr>
                                 }
                             }

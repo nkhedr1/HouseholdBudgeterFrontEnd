@@ -138,12 +138,14 @@
     <Compile Include="Models\AuthenticationError.cs" />
     <Compile Include="Models\BankAccountBindingModel.cs" />
     <Compile Include="Models\BankAccountViewModel.cs" />
+    <Compile Include="Models\CategoryDetailViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ChangePasswordBindingModel.cs" />
     <Compile Include="Models\CreateCategoryBindingModel.cs" />
     <Compile Include="Models\CreateHouseholdBindingModel.cs" />
     <Compile Include="Models\CreateTransactionViewModel.cs" />
     <Compile Include="Models\ForgotPasswordBindingModel.cs" />
+    <Compile Include="Models\HouseholdDetailViewModel.cs" />
     <Compile Include="Models\HouseholdViewModel.cs" />
     <Compile Include="Models\InviteUser.cs" />
     <Compile Include="Models\LoginBindingModel.cs" />
@@ -210,6 +212,7 @@
     <Content Include="Views\Transaction\CreateTransaction.cshtml" />
     <Content Include="Views\Transaction\ViewBankAccountTransactions.cshtml" />
     <Content Include="Views\Transaction\EditTransaction.cshtml" />
+    <Content Include="Views\Household\ViewHouseholdDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
