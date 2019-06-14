@@ -92,9 +92,8 @@ namespace HouseholdBudgeterFrontEnd.Controllers
         [HttpGet]
         public ActionResult EditHousehold(int id)
         {
-            
-            var url = $"http://localhost:55669/api/Household/EditHousehold/{id}";
 
+            var url = $"http://localhost:55669/api/Household/EditHousehold/{id}";
             var httpClient = new HttpClient();
 
             var cookie = Request.Cookies["MyCookie"];
@@ -124,7 +123,8 @@ namespace HouseholdBudgeterFrontEnd.Controllers
             else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {
                 var data = response.Content.ReadAsStringAsync().Result;
-                var result = JsonConvert.DeserializeObject<AuthenticationError>(data);
+                var result = JsonConvert.DeserializeObject<APIModelError>(data);
+                ModelState.AddModelError("", result.Message.ToString());
 
                 return View();
             }
@@ -184,7 +184,8 @@ namespace HouseholdBudgeterFrontEnd.Controllers
             else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {
                 var data = response.Content.ReadAsStringAsync().Result;
-                var result = JsonConvert.DeserializeObject<AuthenticationError>(data);
+                var result = JsonConvert.DeserializeObject<APIModelError>(data);
+                ModelState.AddModelError("", result.Message.ToString());
 
                 return View();
             }
